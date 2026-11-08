@@ -8,13 +8,40 @@
 </head>
 <body>
 
-    <div id="form">
-    <label for="pokemon">Informe o id ou nome do pokemon</label>
-    <input type="text" name="pokemon" id="pokemon">
-    <button id="buscar" onclick="chamarAPI()">Buscar</button>
-    </div>
+    <div id="pokedex">
+        <div id="left">
+            <div id="form">
+                <label for="pokemon">Informe o id ou nome do pokemon</label>
+                <input type="text" name="pokemon" id="pokemon"><br>
+                <button id="buscar" onclick="chamarAPI()">Buscar</button>
+            </div>
+        
+        <div id="infos">
+            <p><strong>Altura: </strong></p>
+            <p><strong>peso: </strong></p>
+            <p><strong>tipo: </strong></p>
+        </div>
 
-    <div id="cartao">
+        </div>
+
+        <div id="cartao">
+            <h1>Pokedex</h1>
+            <div id="imagem">
+            </div>
+
+            <div id="nome">
+            </div>
+            <hr>
+            <h2>Cadeia evolutiva:</h2>
+            <div id="evo">
+                <div class="estagio" id="estagio1">
+                </div>
+                <div class="estagio" id="estagio2">
+                </div>
+                <div class="estagio" id="estagio3">
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
