@@ -23,7 +23,7 @@ async function chamarAPI(){
 
     document.getElementById('infos').innerHTML =
     `<p><strong>Tipo:</strong> ${pokemon.types[0].type.name}</p>
-    <p><strong>Altura:</strong> ${pokemon.height}cm</p>
+    <p><strong>Altura:</strong> ${pokemon.height/10}m</p>
     <p><strong>Peso:</strong> ${pokemon.weight}kg</p>`;
 
 //três estágios
