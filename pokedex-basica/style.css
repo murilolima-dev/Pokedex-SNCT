@@ -23,7 +23,7 @@ body {
 
 .busca input {
     flex: 1;
-    padding: 8px;
+    text-align: center;
 }
 
 .busca button {
@@ -31,18 +31,17 @@ body {
     cursor: pointer;
 }
 
+
+
 .pokemon img {
     width: 120px;
     height: 120px
 }
 
-.tipo {
+.pesoAltura {
     display: inline-block;
-    background: #faeeda;
-    color: #633806;
     padding: 4px 12px;
-    border-radius: 8px;
-    font-size: 14px;
+    font-size:20px;
     margin: 2px;
 }
 
