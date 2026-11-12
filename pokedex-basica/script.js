@@ -2,7 +2,7 @@ const campo = document.getElementById("campo");
 const botao = document.getElementById("botao");
 const resultado = document.getElementById("resultado");
 
-botao.addEventListener("click", buscarPokemon);
+botao.onclick = buscarPokemon;
 
 async function buscarPokemon() {
     const busca = campo.value;
@@ -11,10 +11,9 @@ async function buscarPokemon() {
     const resposta = await fetch(url);
     
     if (!resposta.ok) {
-        resultado.innerHTML = '<p class="erro">Pokémon  não encontrado.</p>';
-        
+        resultado.innerHTML = '<p class="erro">Pokémon  não encontrado.</p>';    
         return;
-    }
+    } 
 
     const dados = await resposta.json();
 
@@ -23,6 +22,9 @@ async function buscarPokemon() {
         <img src ="${dados.sprites.front_default}" alt="${dados.name}">
         <p>#${dados.id}</p>
         <h2>${dados.name}</h2>
+        <h2>${dados.types[0].type.name}</h2>
     </div>`;
+
+    
     
 }
