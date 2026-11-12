@@ -34,7 +34,9 @@ async function chamarAPI(){
     `<h2>ID: ${pokemon.id} | Nome: ${pokemon.name}</h2>`;
 
     document.getElementById('infos').innerHTML =
-    `<p><strong>Tipo:</strong> ${pokemon.types[0].type.name}</p>
+    `<p><strong>Tipo:</strong> ${pokemon.types.map(el => {
+        return el.type.name
+    }).join(', ')}</p>
     <p><strong>Altura:</strong> ${pokemon.height/10}m</p>
     <p><strong>Peso:</strong> ${pokemon.weight/10}kg</p>`;
 
