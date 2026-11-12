@@ -1,0 +1,100 @@
+<!--
+  ============================================================
+  ROTEIRO DE AULA | PARTE 1: HTML (arquivo só para o professor)
+  Analogia da aula: RESTAURANTE
+    código = cliente | API = garçom | servidor = cozinha | resposta = prato
+  Antes de abrir o editor: mostrar no navegador
+    https://pokeapi.co/api/v2/pokemon/pikachu  (depois /25 e /abcxyz para ver o 404)
+  ============================================================
+-->
+
+<!--
+  FALE: "Esta linha avisa ao navegador: isto é uma página moderna.
+  Sempre é a primeira."
+-->
+<!DOCTYPE html>
+
+<!--
+  FALE: "Abre o documento. O lang diz o idioma da página; ajuda
+  tradutores e leitores de tela."
+-->
+<html lang="pt-br">
+
+<!--
+  FALE: "O head guarda o que NÃO aparece na tela, mas o navegador
+  precisa saber."
+-->
+<head>
+    <!-- FALE: "O charset faz o 'é' e o 'ã' aparecerem certinhos." -->
+    <meta charset="UTF-8">
+
+    <!-- FALE: "O viewport ajusta a página para o celular." -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--
+      FALE: "Conecta o arquivo de estilos. O nome precisa ser IGUALZINHO
+      ao do arquivo."
+      CUIDADO: se o CSS não pegar depois, quase sempre é o nome errado aqui
+      (style.css x styles.css).
+    -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- FALE: "O title é o texto que aparece na aba do navegador." -->
+    <title>Pokédex</title>
+</head>
+
+<!--
+  FALE: "O body é tudo o que o usuário vê. HTML é o ESQUELETO: diz o que
+  existe. O CSS cuida da aparência e o JS do comportamento."
+-->
+<body>
+
+    <!--
+      FALE: "O main é o conteúdo principal, o nosso CARTÃO. O class='card'
+      é uma etiqueta que o CSS vai usar para achar essa caixa."
+    -->
+    <main class="card">
+
+        <!-- FALE: "O h1 é o título principal." -->
+        <h1>Pokédex</h1>
+
+        <!--
+          FALE: "A div é uma caixa que agrupa coisas. Aqui agrupa o campo
+          e o botão."
+        -->
+        <div class="busca">
+
+            <!--
+              FALE: "O input é onde a pessoa digita. O placeholder é a
+              dica em cinza. Reparem no id: é o NOME ÚNICO do elemento.
+              O JavaScript vai usar esse nome para encontrá-lo, como dar
+              nome ao garçom para poder chamá-lo."
+              CUIDADO: se esquecer o id, o erro só aparece no JS.
+            -->
+            <input type="text" id="campo" placeholder="Nome ou ID (ex.: pikachu)">
+
+            <!-- FALE: "O botão também tem id, para o JS saber quando clicam." -->
+            <button id="botao">Buscar</button>
+        </div>
+
+        <!--
+          FALE: "Esta div está VAZIA DE PROPÓSITO. É a mesa vazia: o JS
+          vai colocar o prato aqui quando a resposta chegar."
+        -->
+        <div id="resultado"></div>
+    </main>
+
+    <!--
+      FALE: "Conecta o JavaScript. Fica NO FINAL do body porque o JS vai
+      procurar o campo e o botão, e eles precisam já existir na página.
+      Senão ele procura e não acha."
+    -->
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!--
+  TESTE: abrir no navegador (Live Server).
+  FALE: "Está feio e não faz nada. É o esperado: só temos o esqueleto."
+  CUIDADO: toda tag aberta precisa fechar. Conferir cada <div> com seu </div>.
+-->
