@@ -4,29 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
-    <link rel="shortcut icon" href="/favicon/Poké_Ball_icon.svg.webp" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon/Poké_Ball_icon.svg.webp" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
+<body class="rubik-regular">
     <div id="pokedex">
         <div id="left">
             <div id="form">
                 <label for="pokemon">Informe o id ou nome do pokemon</label>
                 <input type="text" name="pokemon" id="pokemon"><br>
-                <button id="buscar" onclick="chamarAPI()">Buscar</button>
+                <button id="buscar" onclick="chamarAPI()"><strong>BUSCAR</strong></button>
             </div>
         
-        <div id="infos">
-            <p><strong>Altura: </strong></p>
-            <p><strong>peso: </strong></p>
-            <p><strong>tipo: </strong></p>
-        </div>
+            <div id="infos">
+                <p><strong>Altura: </strong></p>
+                <p><strong>peso: </strong></p>
+                <p><strong>tipo: </strong></p>
+            </div>
 
         </div>
 
         <div id="cartao">
-            <h1>Pokedex</h1>
+            <h1>Pokédex</h1>
             <div id="imagem">
             </div>
 

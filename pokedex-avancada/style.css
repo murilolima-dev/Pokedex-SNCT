@@ -1,8 +1,19 @@
 *{
     margin: 0;
+    box-sizing: border-box;
+}
+
+.rubik-regular {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 body{
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,12 +22,15 @@ body{
 }
 
 #pokedex{
-    height: 80vh;
+    width: 100%;
+    max-width: 710px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     gap: 5px;
 }
+
+/* ---------- painel esquerdo ---------- */
 
 #left{
     background-color: #C1121F;
@@ -25,119 +39,192 @@ body{
     text-align: center;
     align-items: center;
     justify-content: space-around;
-    height: 91%;
+    gap: 30px;
+    padding: 20px 0;
+    flex: 0 0 300px;
     width: 300px;
-    border-radius: 0 0 0 20px;
-}
-
-#cartao{
-    display: flex;
-    flex-direction: column;
-    background-color: #C1121F;
-    text-align: center;
-    width: 400px;
-    height: 85%;
-    border-radius: 0 20px 0 0;
-    color: white;
-    padding: 20px;
-    gap: 10px;
+    border-radius: 0.2rem 0.2rem 0.2rem 20px;
 }
 
 #form{
     display: flex;
     flex-direction: column;
+    width: 100%;
+    padding: 0 20px;
+}
+
+#form br{
+    display: none;
 }
 
 #form input{
+    margin: 10px 0;
     height: 30px;
+    padding: 0 8px;
+    font-size: 16px;
+    font-family: inherit;
+    border: none;
+    border-radius: 0.2rem;
+}
+
+#form input:focus{
+    outline: #00a6ff solid 3px;
 }
 
 #form button{
     border-radius: 10px;
     height: 40px;
     border-style: none;
-    background-color: #0074b3;
-    color: white;
+    font-family: inherit;
+    background-color: #00a6ff;
+    color: #003f61;
+    transition: all 0.3s ease;
 }
 
 #form button:hover{
+    cursor: pointer;
     background-color: #003f61;
+    color: white;
 }
 
-
-#evo{
-    display: flex;
+#infos{
+    width: 100%;
+    padding: 0 20px;
 }
 
 #infos p{
-    font-size: 30px;
+    font-size: 26px;
+    overflow-wrap: anywhere; /* nomes de tipo/valores grandes não vazam */
 }
 
-#nome{
-    height: 10%;
+/* ---------- cartão ---------- */
+
+#cartao{
+    display: flex;
+    flex-direction: column;
+    background-color: #C1121F;
+    text-align: center;
+    flex: 0 0 400px;
+    width: 400px;
+    height: auto;           
+    border-radius: 0.2rem 20px 0.2rem 0.2rem;
+    color: white;
+    padding: 20px;
+    gap: 10px;
 }
 
 #imagem{
     background-color: #FDF0D5;
     width: 100%;
-    height: 100%;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 0.2rem;
 }
 
-#cartao img{
-    background-color: #FDF0D5;
-    width: 80%;
-    height: 95%;
-    border-radius: 0 20px 0 0;
+#imagem img{
+    height: 200px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    image-rendering: pixelated; /* sprite pequeno ampliado sem ficar borrado */
 }
+
+#nome{
+    min-height: 40px;
+}
+
+#nome h2{
+    font-size: 1.2rem;
+    overflow-wrap: anywhere;
+    text-transform: capitalize;
+}
+
+/* ---------- cadeia evolutiva ---------- */
 
 #evo{
     background-color: #FDF0D5;
-    height: 35%;
     color: black;
+    min-height: 150px;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;         /* em telas estreitas os estágios quebram de linha */
     align-items: center;
     justify-content: space-around;
+    gap: 8px;
     padding: 10px;
+    border-radius: 0.2rem;
 }
 
+.estagio{
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 90px;
+    min-width: 0;
+    max-width: 115px;
+    min-height: 120px;
+    padding: 5px 10px;
+    font-size: 14px;
+    text-align: center;
+    overflow-wrap: anywhere;
+    text-transform: capitalize;
+    background-color: #C1121F20;
+    border-radius: 0.2rem;
+}
 
-@media(width < 700px){
+.estagio img{
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+/* ---------- responsivo ---------- */
+
+@media(width < 780px){
+    body{
+        align-items: flex-start;
+    }
+
     #pokedex{
         flex-direction: column;
+        align-items: center;
+    }
+
+    #left,
+    #cartao{
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    #left{
+        border-radius: 20px 0.2rem 0.2rem 0.2rem;
+    }
+
+    #cartao{
+        border-radius: 0.2rem 0.2rem 20px 0.2rem;
     }
 }
 
 @media(width < 410px){
-    #cartao{
-        width: 300px;
-    }
-}
-
-@media(height < 800px){
-    #pokedex{
-        height: 100vh;
+    body{
+        padding: 10px;
     }
 
-
-    #cartao{
-        width: 400px;
-        height: 85%;
-    }
-
-    #left{
-        height: 92%;
-    }
-
-    #cartao img{
-        height: auto;
-        max-height: 100%;
+    #infos p{
+        font-size: 22px;
     }
 
     #imagem{
-        width: 100%;
-        height: 45%;
+        height: 200px;
     }
 
+    #imagem img{
+        height: 160px;
+    }
 }
-

@@ -1,7 +1,14 @@
+const campoInput = document.getElementById('pokemon');
+
+campoInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        chamarAPI();
+    }});
+
 async function chamarAPI(){
-    const nome = document.getElementById('pokemon').value;
+    const nome = campoInput.value;
     const resp = await fetch('https://pokeapi.co/api/v2/pokemon/' + nome);
-    
 
     if(!resp.ok){                       
         alert("Inválido");
@@ -14,6 +21,11 @@ async function chamarAPI(){
 
     const resp_evo = await fetch(specie.evolution_chain.url);
     const evolution = await resp_evo.json();
+
+
+    document.querySelectorAll('.estagio').forEach(el => {
+        el.style.visibility = "visible";
+    });
 
     document.getElementById('imagem').innerHTML =
     `<img src="${pokemon.sprites.front_default}" alt="">`;
@@ -37,6 +49,7 @@ async function chamarAPI(){
 
         const resp_stage3 = await fetch('https://pokeapi.co/api/v2/pokemon/' + evolution.chain.evolves_to[0].evolves_to[0].species.name);
         const stage3 = await resp_stage3.json();
+
 
         document.getElementById('estagio1').innerHTML = 
         `<p>${evolution.chain.species.name}</p>
@@ -74,7 +87,7 @@ async function chamarAPI(){
         <p><strong>Estágio 2</strong>`;
 
         document.getElementById('estagio3').innerHTML = 
-        `<p>Não possui</p>`; 
+        `<p style="color: #C1121F;">Não possui</p>`; 
     }
 
 //um estágio
@@ -88,10 +101,10 @@ async function chamarAPI(){
         <p><strong>Estágio 1</strong>`;
 
         document.getElementById('estagio2').innerHTML = 
-        `<p>Não possui</p>`;
+        `<p style="color: #C1121F;">Não possui</p>`; 
 
         document.getElementById('estagio3').innerHTML = 
-        `<p>Não possui</p>`; 
+        `<p style="color: #C1121F;">Não possui</p>`;  
     }
 }
 
