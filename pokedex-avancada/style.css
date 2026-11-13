@@ -97,6 +97,16 @@ body{
     overflow-wrap: anywhere; /* nomes de tipo/valores grandes não vazam */
 }
 
+.msg-erro{
+    visibility: hidden;
+    color: #C1121F;
+    font-size: 18px;
+    margin-top: 10px;
+    padding: 0.75rem;
+    border-radius: 0.2rem;
+    background-color: #FDF0D5;
+}
+
 /* ---------- cartão ---------- */
 
 #cartao{

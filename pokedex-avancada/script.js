@@ -11,9 +11,11 @@ async function chamarAPI(){
     const resp = await fetch('https://pokeapi.co/api/v2/pokemon/' + nome);
 
     if(!resp.ok){                       
-        alert("Inválido");
+        document.getElementById('erro').innerHTML = "Pokemon não encontrado!";
+        document.getElementById('erro').style.visibility = "visible";
         return;
     }
+
     const pokemon = await resp.json();
 
     const resp_specie = await fetch('https://pokeapi.co/api/v2/pokemon-species/' + nome);
