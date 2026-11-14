@@ -42,73 +42,30 @@ async function chamarAPI(){
     <p><strong>Altura:</strong> ${pokemon.height/10}m</p>
     <p><strong>Peso:</strong> ${pokemon.weight/10}kg</p>`;
 
-//três estágios
-    if(evolution.chain.evolves_to[0] != null && evolution.chain.evolves_to[0].evolves_to[0] != null){
+    console.log(evolution.chain)
 
-        const resp_stage1 = await fetch('https://pokeapi.co/api/v2/pokemon/' + evolution.chain.species.name);
-        const stage1 = await resp_stage1.json();
+    let current = evolution.chain;
+    let counter = 1;
+    while (current){
+        const resp_stage = await fetch('https://pokeapi.co/api/v2/pokemon/' + current.species.name)
+        const stage = await resp_stage.json();
 
-        const resp_stage2 = await fetch('https://pokeapi.co/api/v2/pokemon/' + evolution.chain.evolves_to[0].species.name);
-        const stage2 = await resp_stage2.json();
+        document.getElementById('estagio' + counter).innerHTML = 
+        `
+            <p>${current.species.name}</p>
+            <img src="${stage.sprites.front_default}" alt="${current.species.name}">
+            <p><strong>Estágio ${counter}</strong></p>
+        `;
 
-        const resp_stage3 = await fetch('https://pokeapi.co/api/v2/pokemon/' + evolution.chain.evolves_to[0].evolves_to[0].species.name);
-        const stage3 = await resp_stage3.json();
-
-
-        document.getElementById('estagio1').innerHTML = 
-        `<p>${evolution.chain.species.name}</p>
-        <img src="${stage1.sprites.front_default}" alt="">
-        <p><strong>Estágio 1</strong>`;
-
-        document.getElementById('estagio2').innerHTML = 
-        `<p>${evolution.chain.evolves_to[0].species.name}</p>
-        <img src="${stage2.sprites.front_default}" alt="">
-        <p><strong>Estágio 2</strong>`;
-
-        document.getElementById('estagio3').innerHTML = 
-        `<p>${evolution.chain.evolves_to[0].evolves_to[0].species.name}</p>
-        <img src="${stage3.sprites.front_default}" alt="">
-        <p><strong>Estágio 3</strong>`; 
+        current = current.evolves_to[0];
+        counter ++;
     }
 
-//dois estágios
-    else if(evolution.chain.evolves_to[0] != null && evolution.chain.evolves_to[0].evolves_to[0] == null){
-
-        const resp_stage1 = await fetch('https://pokeapi.co/api/v2/pokemon/' + evolution.chain.species.name);
-        const stage1 = await resp_stage1.json();
-
-        const resp_stage2 = await fetch('https://pokeapi.co/api/v2/pokemon/' + evolution.chain.evolves_to[0].species.name);
-        const stage2 = await resp_stage2.json();
-
-        document.getElementById('estagio1').innerHTML = 
-        `<p>${evolution.chain.species.name}</p>
-        <img src="${stage1.sprites.front_default}" alt="">
-        <p><strong>Estágio 1</strong>`;
-
-        document.getElementById('estagio2').innerHTML = 
-        `<p>${evolution.chain.evolves_to[0].species.name}</p>
-        <img src="${stage2.sprites.front_default}" alt="">
-        <p><strong>Estágio 2</strong>`;
-
-        document.getElementById('estagio3').innerHTML = 
-        `<p style="color: #C1121F;">Não possui</p>`; 
-    }
-
-//um estágio
-    else if(evolution.chain.evolves_to[0] == null){
-        const resp_stage1 = await fetch('https://pokeapi.co/api/v2/pokemon/' + evolution.chain.species.name);
-        const stage1 = await resp_stage1.json();
-
-        document.getElementById('estagio1').innerHTML = 
-        `<p>${evolution.chain.species.name}</p>
-        <img src="${stage1.sprites.front_default}" alt="">
-        <p><strong>Estágio 1</strong>`;
-
-        document.getElementById('estagio2').innerHTML = 
-        `<p style="color: #C1121F;">Não possui</p>`; 
-
-        document.getElementById('estagio3').innerHTML = 
-        `<p style="color: #C1121F;">Não possui</p>`;  
+    for (let i = counter; i <= 3; i++){
+        document.getElementById('estagio' + i).innerHTML = 
+        `
+            <p style="color: #C1121F;">Não possui</p>
+        `;
     }
 }
 
