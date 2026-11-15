@@ -43,38 +43,30 @@ async function chamarAPI(){
 
 async function evolutionRender(current) {
     let counter = 1;
+
+    document.getElementById('evo').innerHTML = '';
+
     while (current){
         const resp_stage = await fetch('https://pokeapi.co/api/v2/pokemon/' + current.species.name)
         const stage = await resp_stage.json();
 
-        const container = document.createElement('div');
-        container.className = 'estagio';
-        
-        document.getElementById('evo').appendChild(container);
-
-        container.innerHTML = '';
-        
-        container.innerHTML = 
-        `
-        <p>${current.species.name}</p>
-        <img src="${stage.sprites.front_default}" alt="${current.species.name}">
-        <p><strong>Estágio ${counter}</strong></p>
-        `;
-        
-
+        for (let i = 0; i < current.evolves_to.length; i++){
+            const container = document.createElement('div');
+            container.className = 'estagio';
+            
+            document.getElementById('evo').appendChild(container);
+    
+            container.innerHTML = 
+            `
+                <p>${current.evolves_to[i].species.name}</p>
+                <img src="${stage.sprites.front_default}" alt="${current.evolves_to[i].species.name}">
+                <p><strong>Estágio ${counter}</strong></p>
+            `;
+        }
 
         current = current.evolves_to[0];
         counter ++;
     }
-
-    /*for (let i = counter; i <= 3; i++){
-        document.getElementById('estagio' + i).innerHTML = 
-        `
-            <p style="color: #C1121F;">Não possui</p>
-        `;
-    }*/
-
-     
 }
 
 
