@@ -10,11 +10,14 @@ async function chamarAPI(){
     const nome = campoInput.value;
     const resp = await fetch('https://pokeapi.co/api/v2/pokemon/' + nome);
 
+    
     if(!resp.ok){                       
         document.getElementById('erro').innerHTML = "Pokemon não encontrado!";
         document.getElementById('erro').style.visibility = "visible";
         return;
     }
+    
+    document.getElementById('erro').style.visibility = "hidden";
 
     const pokemon = await resp.json();
 
@@ -43,26 +46,23 @@ async function chamarAPI(){
 
 async function evolutionRender(current) {
     let counter = 1;
-
     document.getElementById('evo').innerHTML = '';
 
     while (current){
         const resp_stage = await fetch('https://pokeapi.co/api/v2/pokemon/' + current.species.name)
         const stage = await resp_stage.json();
 
-        for (let i = 0; i < current.evolves_to.length; i++){
-            const container = document.createElement('div');
-            container.className = 'estagio';
-            
-            document.getElementById('evo').appendChild(container);
-    
-            container.innerHTML = 
-            `
-                <p>${current.evolves_to[i].species.name}</p>
-                <img src="${stage.sprites.front_default}" alt="${current.evolves_to[i].species.name}">
-                <p><strong>Estágio ${counter}</strong></p>
-            `;
-        }
+        const container = document.createElement('div');
+        container.className = 'estagio';
+        
+        document.getElementById('evo').appendChild(container);
+
+        container.innerHTML = 
+        `
+            <p>${current.species.name}</p>
+            <img src="${stage.sprites.front_default}" alt="${current.species.name}">
+            <p><strong>Estágio ${counter}</strong></p>
+        `;
 
         current = current.evolves_to[0];
         counter ++;
