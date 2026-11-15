@@ -42,9 +42,10 @@ async function chamarAPI(){
     <p><strong>Altura:</strong> ${pokemon.height/10}m</p>
     <p><strong>Peso:</strong> ${pokemon.weight/10}kg</p>`;
 
-    console.log(evolution.chain)
-
-    let current = evolution.chain;
+    console.log(evolution.chain);
+    evolutionRender(evolution.chain);
+}
+async function evolutionRender(current) {
     let counter = 1;
     while (current){
         const resp_stage = await fetch('https://pokeapi.co/api/v2/pokemon/' + current.species.name)
