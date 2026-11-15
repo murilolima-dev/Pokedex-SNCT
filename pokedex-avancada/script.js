@@ -24,11 +24,6 @@ async function chamarAPI(){
     const resp_evo = await fetch(specie.evolution_chain.url);
     const evolution = await resp_evo.json();
 
-
-    document.querySelectorAll('.estagio').forEach(el => {
-        el.style.visibility = "visible";
-    });
-
     document.getElementById('imagem').innerHTML =
     `<img src="${pokemon.sprites.front_default}" alt="">`;
 
@@ -45,29 +40,41 @@ async function chamarAPI(){
     console.log(evolution.chain);
     evolutionRender(evolution.chain);
 }
+
 async function evolutionRender(current) {
     let counter = 1;
     while (current){
         const resp_stage = await fetch('https://pokeapi.co/api/v2/pokemon/' + current.species.name)
         const stage = await resp_stage.json();
 
-        document.getElementById('estagio' + counter).innerHTML = 
+        const container = document.createElement('div');
+        container.className = 'estagio';
+        
+        document.getElementById('evo').appendChild(container);
+
+        container.innerHTML = '';
+        
+        container.innerHTML = 
         `
-            <p>${current.species.name}</p>
-            <img src="${stage.sprites.front_default}" alt="${current.species.name}">
-            <p><strong>Estágio ${counter}</strong></p>
+        <p>${current.species.name}</p>
+        <img src="${stage.sprites.front_default}" alt="${current.species.name}">
+        <p><strong>Estágio ${counter}</strong></p>
         `;
+        
+
 
         current = current.evolves_to[0];
         counter ++;
     }
 
-    for (let i = counter; i <= 3; i++){
+    /*for (let i = counter; i <= 3; i++){
         document.getElementById('estagio' + i).innerHTML = 
         `
             <p style="color: #C1121F;">Não possui</p>
         `;
-    }
+    }*/
+
+     
 }
 
 
