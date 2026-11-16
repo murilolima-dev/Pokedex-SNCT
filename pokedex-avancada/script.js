@@ -17,7 +17,7 @@ async function chamarAPI(){
         return;
     }
     
-    document.getElementById('erro').style.visibility = "hidden";
+    document.getElementById('erro').style.visibility = "";
 
     const pokemon = await resp.json();
 
@@ -45,9 +45,26 @@ async function chamarAPI(){
 }
 
 async function evolutionRender(current) {
-    let counter = 1;
+   
+    //let counter = 1;
     document.getElementById('evo').innerHTML = '';
 
+    let level = [current];
+    const stages = [];
+
+    while (level.length > 0){
+        
+        const next = [];
+        for (const node of level){
+            stages.push(node.species.name);
+            next.push(node.evolves_to)
+        }
+        level = [next];
+    } 
+    
+    console.log(stages);
+
+    /*
     while (current){
         const resp_stage = await fetch('https://pokeapi.co/api/v2/pokemon/' + current.species.name)
         const stage = await resp_stage.json();
@@ -56,6 +73,7 @@ async function evolutionRender(current) {
         container.className = 'estagio';
         
         document.getElementById('evo').appendChild(container);
+
 
         container.innerHTML = 
         `
@@ -66,7 +84,7 @@ async function evolutionRender(current) {
 
         current = current.evolves_to[0];
         counter ++;
-    }
+    }*/
 }
 
 
